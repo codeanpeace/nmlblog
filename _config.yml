@@ -1,3 +1,4 @@
-name: Your New Jekyll Site
+name: New Media Lab Log
 markdown: redcarpet
 pygments: true
+baseurl: /nmlblog
