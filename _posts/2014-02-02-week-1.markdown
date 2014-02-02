@@ -1,0 +1,68 @@
+Week 1: It's The Process That Makes It Art
+==========================================
+28.01.14 - 03.02.14
+-------------------
+Processing is a Java-based programming language that makes drawings, animation, and interactive graphics as easy as pie. Influenced by the language Desing By Numbers (DBN), Casey Reas and Ben Fry created Processing to give artists a better medium to express themselves. Their understanding the creative artistic process of artists helped the craft a programming language that ultimately minimized the time and space between code and art.
+
+### Show Me The Code
+
+    // General
+    size(width, height) // Dimensions of window
+    print() // Print to console
+    println() // Print to console with new line
+
+    // Draw Basic Shapes
+    line(x1, y1, x2, y2)
+    triangle(x1, y1, x2, y2, x3, y3)
+    quad(x1, y1, x2, y2, x3, y3, x4, y4)
+    rect(x, y, width, height)
+    ellipse(x, y, width, height)
+    arc(x, y, width, height, start, stop) // in radians
+
+    // Shape Properties
+    smooth() // Turns on smoothing
+    noSmooth() // Turns off smoothing
+    strokeWeight() // in pixels
+    strokeJoin(ROUND) // Round the stroke corners
+    strokeJoin(BEVEL) // Bevel the stroke corners
+    strokeCap(SQUARE) // Square the line corners
+    strokeCap(ROUND) // Round the line corners
+    rectMode() // Controls placement of rectangle (default upper-left corner)
+    ellipseMode() // Controls placement of ellipse (default upper-left corner)
+    // These settings are all persistent until they are changed again!
+
+    // Color
+    background()
+    fill()
+    stroke()
+    // RGB parameters in range from 0 black to 255 white
+    // Add fourth parameter for alpha aka transparency in range from 0 transparent to 255 solid
+    noFill() // Turns off fill
+    noStroke() // Turns off stroke
+    colorMode(RGB, 100) // Set custom color range
+    // Alternative colors via HSB mode (hue, saturation, and brightness)
+
+    // Custom Shapes
+    // Encapsulate with
+    beginShape()
+    endShape() // Pass in CLOSE to connect first and last vertices
+
+    // Comments
+    // Single line
+    /* Multiple
+    lines */
+
+    // Example 2-2: Make Circles
+    void setup() {
+        size(480, 120);
+        smooth();
+    }
+    void draw() {
+        if (mousePressed) {
+            fill(0);
+        } else {
+            fill(255);
+        }
+        ellipse(mouseX, mouseY, 80,80);
+    }
+    // Source: Getting Started with Processing (10)
