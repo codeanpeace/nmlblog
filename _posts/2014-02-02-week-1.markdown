@@ -4,8 +4,7 @@ title:  "Week 1: It's The Process That Makes It Art"
 date:   2014-02-02 12:40:46
 categories:
 ---
-Week 1: It's The Process That Makes It Art
-==========================================
+
 28.01.14 - 03.02.14
 -------------------
 Processing is a Java-based programming language that makes drawings, animation, and interactive graphics as easy as pie. Influenced by the language Desing By Numbers (DBN), Casey Reas and Ben Fry created Processing to give artists a better medium to express themselves. Their understanding the creative artistic process of artists helped the craft a programming language that ultimately minimized the time and space between code and art.
