@@ -41,7 +41,7 @@ Processing is a Java-based programming language that makes drawings, animation, 
     fill()
     stroke()
     // RGB parameters in range from 0 black to 255 white
-    // Add fourth parameter for alpha aka transparency in range from 0 transparent to 255 solid
+    // Add fourth parameter for alpha aka transparency (0 transparent to 255 solid)
     noFill() // Turns off fill
     noStroke() // Turns off stroke
     colorMode(RGB, 100) // Set custom color range
@@ -71,3 +71,7 @@ Processing is a Java-based programming language that makes drawings, animation, 
         ellipse(mouseX, mouseY, 80,80);
     }
     // Source: Getting Started with Processing (10)
+
+### Bridge At Sunrise
+<p data-height="875" data-theme-id="0" data-slug-hash="rxibf" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/codeanpeace/pen/rxibf'>Unfinished Bridge At Sunrise</a> by Harrison Tan (<a href='http://codepen.io/codeanpeace'>@codeanpeace</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script src="//codepen.io/assets/embed/ei.js"> </script>
