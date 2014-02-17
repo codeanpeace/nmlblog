@@ -1,0 +1,129 @@
+---
+layout: post
+title:  "Week 3: Conditions, Loopy Lists, and Motion"
+date:   2014-02-17 12:40:46
+categories:
+---
+
+11.02.14 - 17.02.14
+-------------------
+
+### Motion
+
+Motion, or at least the illusion of fluid motion, is simply a series of similar snapshots served in swift succession and made possible by the persistence of vision. In Processing, the special variable frameRate reflects the frames per second.
+
+Tweening means setting the beginning and ending position, then calculating the in-between aka tween positions.
+
+    // Example 7-6: Calculate Tween Positions
+    int startX = 20;
+    int stopX = 160;
+    int startY = 30;
+    int stopY = 80;
+    float x = startX;
+    float y = startY;
+    float step = 0.005;
+    float pct = 0.0;
+
+    void setup() {
+      size(240, 120);
+      smooth();
+    }
+
+    void draw() {
+      background(0);
+      if (pct < 1.0) {
+        x = startX + ((stopX-startX) * pct);
+        y = start Y + ((stopY-startY) * pct);
+        pct += step;
+      }
+      ellipse(x, y, 20, 20);
+    }
+
+Random selects a random float from a range.
+    // random(beginning range, ending range);
+
+Processing tracks the passage of time since a program begins running in milliseconds. This allows for triggering timed events via conditionals.
+    // millis()
+
+Sine and cosine can be used to generate fluid motion. Using independently allows for wavy motion while in conjunction for for circular motion.
+
+Translate, Rotate, and Scale + Push/Pop Matrices\
+    // Example 7-23: An Articulating Arm
+    float angle = 0.0;
+    flaot angleDirection = 1;
+    float speed = 0.005;
+
+    void setup() {
+      size(120, 120);
+      smooth();
+    }
+
+    void draw() {
+      background(204);
+      translate(20, 25);   // Move to start position
+      rotate(angle);
+      strokeWeight(12);
+      line(0, 0, 40, 0);
+      translate(40, 0);    // Move to next joint
+      rotate(angle * 2.0);
+      strokeWeight(6);
+      line(0, 0, 30, 0);
+      translate(30, 0);    // Move to next joint
+      rotate(anlge * 2.5);
+      strokeWeight(3);
+      line(0, 0, 20, 0);
+
+      angle += speed * angleDirection;
+      if ((angle > QUARTER_PI) || (angle < 0)) {
+        angleDirection += -1;
+      }
+    }
+
+### Arrays
+1. Declare and define
+2. Create with new and set length
+3. Assign values
+
+    int[] x;                // 1
+    x = new int[1]          // 2
+    x[0] = 11               // 3
+
+    int[] x = new int[2]    // 1 + 2
+
+    int[] x = {12, 2}       // 1 + 2 + 3
+
+#### Loopy Lists/Arrays
+    float[] list = new float[100];
+    for (int i = 0; i < list.length; i++) {
+      list[i] = random(100);
+    }
+
+### Conditionals
+    if (boolean) {
+      // code
+    } else if (boolean) {
+      // code
+    } else {
+      //code
+    }
+
+    // boolean = true or false
+
+    r = constrain(r, 0, 255)
+
+#### Relational Operators
+- >
+- <
+- >=
+- <=
+- ==
+- !=
+
+#### Logical Operators
+- && => AND
+- || => OR
+- ! => NOT
+
+### Evenly Random
+<p data-height="268" data-theme-id="4158" data-slug-hash="KxJcD" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/codeanpeace/pen/KxJcD'>Evenly Random</a> by Harrison Tan (<a href='http://codepen.io/codeanpeace'>@codeanpeace</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//codepen.io/assets/embed/ei.js"> </script>
