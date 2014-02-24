@@ -1,0 +1,128 @@
+---
+layout: post
+title:  "Week 4: Organize With Funjects"
+date:   2014-02-17 12:40:46
+categories:
+---
+
+### Functions
+
+Functions allows for modularity and reusability.
+
+To declare a function, specify:
+1. Return type ie. integer, float, void, etc.
+2. Function name ie. camelCase
+3. Arguments ie. (integer num, float dec)
+
+returnType functionName(arguments) {
+  // Code body of function
+  // return valueToReturn; (if returnType != void)
+}
+
+Parameters are "pass by value/copy" meaning they are unchanged!
+
+
+#### Show me the code
+
+    // Example 8-1: Roll the Dice
+    void rollDice(int numSides) {
+      int d = 1+ int(random(numSides));
+      println("rolling... " + d)
+    }
+
+    // Example 8-5: An Owl Function
+    void owl(int x, int y) {
+      pushMatrix();
+      translate(x, y);
+      stroke(0);
+      strokeWeight(70);
+      line(0, -35, 0, -65);   // Body
+      noStroke();
+      fill(255);
+      ellipse(-17.5, -65, 35, 35);    // Left eye dome
+      ellipse(17.5, -65, 35, 35);    // Right eye dome
+      arc(0, -65, 70, 70, 0, PI);   // Chin
+      fill(0);
+      ellipse(-14, -65, 8, 8);   // Left eye
+      ellipse(14, -65, 8, 8);  // Right eye
+      quad(0, -58, 4, -51, 0, -44, -4, -51);    // Beak
+      popMatrix();
+    }
+
+    // Example 8-8: Return a Value
+    float calculateMars(float w) {
+      float newWeight = w * 0.38;
+      return newWeight;
+    }
+
+Functions can have objects as arguments.
+
+### Objects
+
+Classes roll data and functionality into one. Instances of classes are objects.
+
+To creeate a class,
+1. Create block
+2. Add fields
+3. Write a constructor
+4. Add methods
+
+    class Car {
+
+      color c;
+      float xpos;
+      float ypos;
+      float xspeed;
+
+      Car(color c_, float xpos_, float ypos_, float xspeed_) {
+        c = c_;
+        xpos = xpos_;
+        ypos = ypos_;
+        xspeed = xspeed_;
+      }
+
+      void display() {
+        stroke(0);
+        fill(c);
+        rectMode(CENTER);
+        rect(xpos, ypos, 20, 10);
+      }
+
+      void move() {
+        xpost = xpost + xspeed;
+        if (xpos > width) {
+          xpos = 0;
+        }
+      }
+    }
+
+To make a variable,
+1. Declare object variable
+2. Create/initialize object with keyword new
+
+    Car myCar;    // outside of setup and draw
+    myCar = new Car(arguments)    // inside setup
+
+Objects can be nested aka include other objects among its variables.
+
+
+### Blinking Owls
+<p data-height="268" data-theme-id="4158" data-slug-hash="nwDbl" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/codeanpeace/pen/nwDbl'>Blinking Owls</a> by Harrison Tan (<a href='http://codepen.io/codeanpeace'>@codeanpeace</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//codepen.io/assets/embed/ei.js"> </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
