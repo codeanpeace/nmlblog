@@ -1,0 +1,195 @@
+---
+layout: post
+title:  "Week 5: From Pictures To Pixels To Video"
+date:   2014-02-17 12:40:46
+categories:
+---
+
+### Pictures & Fonts & Shapes
+
+0. Create data folder in sketch folder.
+1. Add images, fonts, and shapes to aforementioned data folder.
+2. Create PImage, PFont, or PShape variable.
+3. Load into variable with loadImage, loadFont, or loadShape.
+4. Use textFont() to set current font.
+
+
+    // Example 6-1: Load and Image
+    // + Example 6-8: Store Text in a String
+    PImage img;
+
+    void setup() {
+      size(480, 120);
+      img = loadImage("lunar.jpg");
+    }
+
+    void draw() {
+      image(img, 0, 0, 480, 120);
+    }
+
+    // Example 6-7: Draw Text in a Box
+    PFont font;
+    String quote = "That's one small step for man...";
+
+    void setup() {
+      size(480, 120);
+      font = loadFont("AndaleMono-24.vlw");
+      textFont(font);
+    }
+
+    void draw() {
+      background(102);
+      text(quote, 26, 30, 240, 100);
+    }
+
+    // Example 6-10: Scaling Shapes
+    PShape network;
+
+    void setup() {
+      size(4800);
+      smooth();
+      shapeMode(CENTER);
+      network = loadShape("network.svg");
+    }
+
+    void draw() {
+      background(0);
+      float diameter = map(mouseX, 0, width, 10, 800);
+      shape(network, 120, 60, diameter, diameter);
+    }
+
+#### Image Professing Filter with tint()
+- 1 argument: brightness [dark(0) to normal(255)]
+- 2 arguments: brightness, alpha transparency [0 - 255]
+- 3 arguments: red, green, blue [0 - 255]
+- 4 arguments: red, green, blue, alpha transparency
+
+
+### Pixels
+
+    // Example 15-6: Setting pixels according to their 2D location
+    size(200, 200);
+    // Before we deal with pixels
+    loadPixels();
+    // Loop through every pixel column
+    for (int x = 0; x < pixels.length; x++) {
+      // Loop through every pixel row
+      for (int y = 0; y < pixels.height; y++) {
+        // Use the formula to find the 1D location
+        int loc = x + y * width;
+        if (x % 2 == 0) { // If we are an even column
+          pixels[loc] = color(255);
+        } else {          // If we are an odd column
+          pixels[loc] = color(0);
+        }
+      }
+    }
+    // When we are finished dealing with pixels
+    updatePixels();
+
+    // Example 15-12: Pixel neighbor differences (edges)
+    // Since we are looking at left neighbors
+    // We skip the first column
+    for (int x = 1; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        // Pixel locatio nand color
+        int loc = x + y*img.width;
+        color pix = img.pixels[loc];
+
+        // Pixel to the left location and color
+        int leftLoc = (x-1) + y*img.width;
+        color leftPix = img.pixels[leftLoc];
+
+        // New color is the difference between pixel and left neighbor
+        float diff = abs(brightness(pix) - brightness(leftPix));
+        pixels[loc] = color(diff);
+      }
+    }
+
+### Video
+
+#### Live Video
+1. import processing.video.*
+2. Capture video;
+3. video = new Capture();
+4. video.start();
+
+    // Example 16-2: Manipulate video image
+    import processing.video.*;
+
+    Capture video;
+
+    void setup() {
+      size(320, 240);
+      video = new Capture(this, 320, 240, 15);
+      video.start();
+    }
+
+    void draw() {
+      if (video.available()) {
+        video.read();
+      }
+
+      // Tinting using mouse location
+      tint(mouseX, mouseY, 255);
+      // Width and height according to mouse
+      image(video, 0, 0, mouseX, mouseY);
+    }
+
+#### Recorded Video
+0. Add movie to sketch's data folder
+1. Movie movie;
+2. movie = new Movie(this, "testmovie.mov");
+3. movie.loop();
+4. if (movie.available()) { movie.read(); }
+5. image(movie, 0, 0);
+
+- movie.jump(ratio * movie.duration());
+
+#### Computer Vision
+
+1. Track brightest and/or color
+2. Background removal
+3. Motion detection
+
+- OpenCV library!
+
+
+### Spreading Pointillism
+
+    import processing.video.*;
+
+    Capture cam;
+    int pointillize = 16;
+
+    void setup() {
+      size(320, 240);
+      cam = new Capture(this, 320, 240, 15);
+      cam.start();
+      background(0);
+      smooth();
+    }
+
+    void draw() {
+      if (cam.available()) {
+        cam.read();
+      }
+
+      loadPixels();
+      cam.loadPixels();
+
+    //  int x = int(random(cam.width));
+    //  int y = int(random(cam.height));
+      int x = constrain(int(random(100*frameCount/cam.width)), 0, cam.width - 1);
+      int y = constrain(int(random(100*frameCount/cam.height)), 0, cam.height - 1);
+      int loc = x + y * cam.width;
+
+      float r = red(cam.pixels[loc]);
+      float g = green(cam.pixels[loc]);
+      float b = blue(cam.pixels[loc]);
+      noStroke();
+
+      fill(r, g, b, 100);
+      ellipse(x, y, pointillize, pointillize);
+
+    }
