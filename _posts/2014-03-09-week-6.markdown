@@ -1,0 +1,187 @@
+---
+layout: post
+title:  "Week 6: Hello world - talk to me!"
+date:   2014-03-09 12:40:46
+categories:
+---
+
+### Text As Lingua Franca
+
+#### String methods
+
+    message.length();
+    message.charAt(index);
+    String uppercase = message.toUpperCase();
+    // strings are immutable, therefore reassignment
+    message.equals(message) => true
+    String helloworld = "Hello" + "World"; // concatenation
+    message.indexOf(search_string); // returns -1 if not found
+    message.substring(start_index, end_index);
+    String[] list = split("one long message", " ");
+    // list = {"one", "long", "message"}
+    splitTokens(stuff, "&,+."); // multiple delimiters
+    String onelongstring = join({"one", "long", "message"}, " ");
+    // onelongstring = "one long message"
+
+
+#### Fonts
+
+1. Pfont f;
+2. f = createFont(name, font_size, smoothing_boolean);
+3. textFont(f, font_size);
+4. fill(color);
+5. text("String", x, y);
+
+    textAlign(); // RIGHT, LEFT, CENTER
+    textWidth();
+    textLeading();
+    textMode();
+    textSize();
+
+#### Data Input
+
+    String[] lines = loadStrings("file.txt"); // file.txt in data folder
+    for (int i = 0; i < lines.length; i++) {};
+    // also works wit URL path via raw HTML
+
+    String[] stuff = {"Each String", "will be saved", "on a", "separate line"};
+    saveStrings("data.txt", stuff); // stores in sketch directory by default
+    // caution! overwrites if file already exists
+
+    // simleML library to execute HTTP requests
+    HTMLRequest req = new HTMLRequest(this, "url");
+    HTMLRequest req = new XMLRequest(this, "url");
+    req.makeRequest();
+    // Callback Functions
+    netEvent(); // invoked the instant a request if finished and data is available
+    captureEvent(); // triggered when the HTML request finishes (or XML)
+    ml.readRawSource(); // converts HTML into String
+    ml.getElementText("element_name"); // returns content from single XML element
+    ml.getElementAttributeText(element_and_attribute_name); // returns attribute
+    ml.getElementArray(); // returns array of re-occurring XML elements
+
+#### Data Streams
+Asynchronous Request (web page) vs. Synchronous Socket Connection (chat)
+
+    // Example 19-1: Simple therapy server
+    // Import the net libraries
+    import processing.net.*;
+
+    // Declare a server
+    Server server;
+
+    // Used to indicate a new message has arrived
+    float newMessageColor = 255;
+
+    PFont f;
+    String incomingMessage = "";
+
+    void setup() {
+      size(400, 400);
+      // Create the Server on port 5204
+      server = new Server(this, 52504);
+      f = createFont("Arial", 16, true);
+    }
+
+    void draw() {
+      background(newMessageColor);
+
+      // newMessageColor fades to white over t ime
+      newMessageColor = constrain(newMessageColor + 0.3, 0, 255);
+      textFont(f);
+      textAlign(CENTER);
+      fill(255);
+      text(incomingMessage, width/2, height/2);
+
+      // If a client is available, we weill find out
+      // If there is no client, it will be "null"
+      Client client = server.available();
+      // We should only proceed if the client is not null
+      if (client != null) {
+        // Reveive the message
+        incomingMessage = client.readString();
+        incomingMessage = incomingMessage.trim();
+        // Print to Processing messaging window
+        println("Client says: " + incomingMessage);
+        // Write message back out (note this goes to ALL clients)
+        server.write("How does " + incomingMessage + " make you feel?\n");
+        // Reset newMessageColor to black
+        newMessageColor = 0;
+      }
+    }
+
+    // The serverEvent function is called whenver a new client connects.
+    void serverEvent(Server server, Client client) {
+      incomingMessage = "A new client has connected: " + client.ip();
+      println(incomingMessage);
+      // Reset newmMessageColor to black
+      newMessageColor = 0;
+    }
+
+
+    // Example 19-2: Simple therapy client
+    // Import the net libraries
+    import processing.net.*;
+
+    // Declare a client
+    Client client;
+
+    // Used to indicate a new message
+    float newMessageColor = 0;
+    // A String to hold whatever the server says
+    String messageFromServer = "";
+
+    // A String to hold what the user types
+    String typing = "";
+    PFont = f;
+
+    void setup() {
+      size(400, 200);
+      // Create the Client
+      client = new Client(this, "127.0.0.1", 5204);
+      f = createFont("Arial", 16, true);
+    }
+
+    void draw() {
+      background(255);
+
+      // Display message from server
+      fill (newMessageColor);
+      textFont(f);
+      textAlign(CENTER);
+      text(messageFromServer, width/2, 140);
+      // Fade message from server to white
+      newMessageColor = constrain(newMessageColor + 1, 0, 255);
+
+      // Display Instructions
+      fill(0);
+      text("Type text and hit return to send to server.", width/2, 60);
+      // Display text typed by user
+      fill(0);
+      text(typing, width/2, 80);
+
+      // If there is information available to read
+      if (client.available() > 0) {
+        // Read it as a String
+        messageFromServer = client.readString();
+        // Set brightness to 0
+        newMessageColor = 0;
+      }
+    }
+
+    // Simple user keyboard input
+    void keyPressed() {
+      // If the return key is pressed, save the String and clear it
+      if (key == '\n') {
+        // When the user hits enter, write the sentence out to the Server
+
+        client.write(typing);
+        typing = "";
+      } else {
+        typing = typing + key;
+      }
+    }
+
+### Haiku Remix
+<p data-height="268" data-theme-id="4158" data-slug-hash="wHixl" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/codeanpeace/pen/wHixl'>Haiku Remix</a> by Harrison Tan (<a href='http://codepen.io/codeanpeace'>@codeanpeace</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//codepen.io/assets/embed/ei.js"> </script>
