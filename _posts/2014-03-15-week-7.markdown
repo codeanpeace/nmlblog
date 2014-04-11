@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "Week 7: Light Pong Midterm!"
+date:   2014-03-15 12:40:46
+categories:
+---
+
+## Light Pong Midterm with Leena Asfour
+
+OOP (Object-Oriented Programming) four player pong game. Ball splits into two on click with the vector sum of the new balls equal to that of the original. Dynamically adjust size of ball. Takes keyboard input.
+
+https://github.com/codeanpeace/light_pong
