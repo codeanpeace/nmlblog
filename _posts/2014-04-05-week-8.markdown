@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "Week 8: Interaction Design of Electronic Stuff"
+date:   2014-04-05 12:40:46
+categories:
+---
+
+Over break, we read three great pieces on the future of interaction design - a great segue into the upcoming physical tinkering.
+1. [Don Norman on Wearable Devices](http://www.technologyreview.com/news/517346/the-paradox-of-wearable-technologies/)
+2. [No to NoUI](http://www.elasticspace.com/2013/03/no-to-no-ui)
+3. [A Brief Rant on the Future of Interaction Design](http://worrydream.com/ABriefRantOnTheFutureOfInteractionDesign/)
+
+### Don Norman on Wearable Devices
+Norman calls our attention to the necessity of well thought out design as technology becomes increasingly omnipresent in our lives, especially with the advent of wearable devices. Wearable tech promises to blur the lines between the physical and digital realities and the manner in which it does will have an impact on the individual users and society at large. He cautions that the interface of and interaction with wearable devices is on a spectrum ranging from an insistent and demanding immature baby stretching our mental bandwidth and sanity to a helpful and thoughtful mature secretary augmenting our mental bandwidth and sense of well-being. Hopefully it's the latter!
+
+### No to NoUI
+Arnall offers a compelling counter-argument to the recent trend in no ui aka that the best design is invisible design. He argues that this is a wrong model in that it necessarily results in a "loss of understanding in agency for designers and users. Arnall also cautions us to re-consider what "natural" and "intuitive" design actually means and asserts that invisible design is not so much natural or intuitive. Instead, he notes the importance of learned culture and mannerisms that ultimately cause good design to be mistaken for invisible design.
+
+### A Brief Rant on the Future of Interaction Design
+Victor crafts a visual and logical rant that challenges the widespread so-called "futuristic" interaction design thinking that does not question the dominance of screen-based interaction. Instead of thinking outside of the box - or the "rectangular glass" in this case, many designers seem to be fixated on this paradigm. He takes the reader through the philosophy of the tools we use and how we use them. In doing so, he points out how screen-based interaction leaves our hands feeling empty as it offers no change in texture or weight, which are important channels of information. This line of thought has come up in the transtion from old mechanical keyboards that offer better typing speeds and accuracy by providing tactile feedback to chiclet-style laptop keyboards and now to keyless glass keyboards. Then, he goes further by looking at how we actually hold our tools when interacting with tools. He ends with a call to action asking "Why aim for anything less than a dynamic medium that we can see, feel, and manipulate?" and to consider the human body as an interface beyond just a single finger.
+
+
+<iframe src="//player.vimeo.com/video/92611493" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/92611493">Book Lamp Light Switch</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
