@@ -6,3 +6,158 @@ categories:
 ---
 
 <iframe src="//player.vimeo.com/video/95399335" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/95399335">Pokedex V2 LCD Display</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p> <p>An interactive Pokedex that reports back the name of the Pokemon scanned on the Arduino-driven LCD screen. In more detail, the Processing sketch that runs on any device supporting Java monitors the device&#039;s camera, which is triggered by a scanning red laser and subsequently sends a HTTP Get request to a server running a basic Ruby On Rails webapp marking the device as flagged. Then, the Arduino sketch routinely pings the server to check for flagged devices and reports it on the attached LCD screen. The simple protocol used was a * to mark the beginning of a device&#039;s name and ^ to mark the end. See Pokedex In The Wild for the in-class demo with 10 pokemon.</p>
+
+### Pokedex Arduino Code
+    // libraries
+    #include <GSM.h>
+    #include <LiquidCrystal.h>
+
+    // PIN Number
+    #define PINNUMBER ""
+
+    // APN data
+    #define GPRS_APN       "etisalat.ae" // replace your GPRS APN
+    #define GPRS_LOGIN     ""    // replace with your GPRS login
+    #define GPRS_PASSWORD  "" // replace with your GPRS password
+
+    // initialize the library instance
+    GSMClient client;
+    GPRS gprs;
+    GSM gsmAccess;
+
+    // initialize the library with the numbers of the interface pins
+    LiquidCrystal lcd(12, 11, 8, 6, 5, 4);
+
+    // URL, path & port (for example: arduino.cc)
+    char server[] = "strawberry-crisp-5169.herokuapp.com";
+    char path[] = "/devices/status";
+    int port = 80; // port 80 is the default for HTTP
+
+    String response = "";
+    boolean listening = false;
+    String output = "";
+
+    unsigned long lastConnectionTime = 0;             // last time you connected to the server, in milliseconds
+    const unsigned long postingInterval = 10L * 1000L; // delay between updates, in milliseconds
+    // the "L" is needed to use long type numbers
+
+    void setup()
+    {
+      // initialize serial communications and wait for port to open:
+      Serial.begin(9600);
+      while (!Serial) {
+        ; // wait for serial port to connect. Needed for Leonardo only
+      }
+
+      Serial.println("Starting Arduino web client.");
+      // connection state
+      boolean notConnected = true;
+
+      // After starting the modem with GSM.begin()
+      // attach the shield to the GPRS network with the APN, login and password
+      while (notConnected)
+      {
+        if ((gsmAccess.begin(PINNUMBER) == GSM_READY) &
+            (gprs.attachGPRS(GPRS_APN, GPRS_LOGIN, GPRS_PASSWORD) == GPRS_READY)) {
+          notConnected = false;
+          Serial.println("...");
+         }
+        else
+        {
+          Serial.println("Not connected");
+          delay(1000);
+        }
+      }
+
+      Serial.println("connecting...");
+
+      // if you get a connection, report back via serial:
+      if (client.connect(server, port))
+      {
+        Serial.println("connected");
+        // Make a HTTP request:
+        client.print("GET ");
+        client.print(path);
+        client.println(" HTTP/1.1");
+        client.print("Host: ");
+        client.println(server);
+        client.println("Connection: close");
+        client.println();
+      }
+      else
+      {
+        // if you didn't get a connection to the server:
+        Serial.println("connection failed");
+      }
+      Serial.println("LCD on");
+      // set up the LCD's number of columns and rows:
+      lcd.begin(16, 2);
+      // Print a message to the LCD.
+      lcd.print("POKEDEX");
+
+    }
+
+    void loop()
+    {
+      // if there are incoming bytes available
+      // from the server, read them and print them:
+      if (client.available()) {
+        char c = client.read();
+        Serial.print(c);
+
+        if (c == '^') {
+          listening = false;
+          Serial.println("");
+          Serial.println("Response: " + response);
+          lcd.setCursor(0, 1);
+          output = response + "!";
+        }
+
+        if (listening == true) { response += c; }
+
+        if (c == '*') {
+          listening = true;
+          response = "";
+          output = "scanning...";
+        }
+      }
+
+      // if ten seconds have passed since your last connection,
+      // then connect again and send data:
+      if (millis() - lastConnectionTime > postingInterval) {
+        Serial.println("HTTP Request");
+        httpRequest();
+      }
+
+      lcd.clear();
+      lcd.print("POKEDEX");
+      lcd.setCursor(0, 1);
+      lcd.print(output);
+    }
+
+
+    // this method makes a HTTP connection to the server:
+    void httpRequest() {
+      // close any connection before send a new request.
+      client.stop();
+
+      // if there's a successful connection:
+      if (client.connect(server, port)) {
+        Serial.println("connected");
+        // Make a HTTP request:
+        client.print("GET ");
+        client.print(path);
+        client.println(" HTTP/1.1");
+        client.print("Host: ");
+        client.println(server);
+        client.println("Connection: close");
+        client.println();
+
+        // note the time that the connection was made:
+        lastConnectionTime = millis();
+      }
+      else {
+        // if you couldn't make a connection:
+        Serial.println("connection failed");
+      }
+    }

@@ -132,3 +132,55 @@ MOSFET extends the capabilities of Arduino by serving as an intermediary electro
 Complex sensors produce information that need more than a digitalRead or analogRead and are thus pre-processed by small microcontrollers in the circuit.
 
 <iframe src="//player.vimeo.com/video/92609021" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/92609021">Sleepy Light Breathing</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p> <p>Photoresistor controls the rate at which the light breathes.</p>
+
+### Sleepy Light Breathing Arduino Code
+    // Example 06B: Set the brightness of LED to
+    // a brightness specified by the
+    // value of the analogue input
+
+    const int LED = 9; // the pin for the LED
+    int val = 0;       // variable used to store the value
+                       // coming from the sensor
+
+    int brightness = 0;    // how bright the LED is
+    int fadeAmount = 10;    // how many points to fade the LED by
+
+    void setup() {
+      Serial.begin(9600);
+      pinMode(LED, OUTPUT); // LED is as an OUTPUT
+                            // Note: Analogue pins are
+                            // automatically set as inputs
+    }
+
+    void loop() {
+
+      val = analogRead(0); // read the value from
+                           // the sensor
+    //  Serial.print("Val: \t");
+      Serial.println(val);
+
+    //  analogWrite(LED, val/4); // turn the LED on at
+    //                           // the brightness set
+    //                           // by the sensor
+    //
+    //  delay(10); // stop the program for
+    //             // some time
+
+      fadeAmount = val/4%100;
+      fadeAmount = map(fadeAmount, 0, 100, 1, 10);
+    //  Serial.print("Fade Amount: \t");
+      Serial.println(fadeAmount);
+
+      // set the brightness of pin 9:
+      analogWrite(LED, brightness);
+
+      // change the brightness for next time through the loop:
+      brightness = brightness + fadeAmount;
+
+      // reverse the direction of the fading at the ends of the fade:
+      if (brightness == 0 || brightness == 255) {
+        fadeAmount = -fadeAmount ;
+      }
+      // wait for 30 milliseconds to see the dimming effect
+      delay(30);
+    }

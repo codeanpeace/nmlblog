@@ -31,3 +31,136 @@ Igoe cautions "Don’t interpret your own work." He suggests that in making inte
 Igoe goes through a list of what he has observed as re-occuring themes in physical computing projects. Mix and match for inspiration.
 
 <iframe src="//player.vimeo.com/video/94075682" width="500" height="889" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/94075682">Interactive Pot Light Pong</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p> <p>Created physical interface for my 4-player light pong game I wrote with Leena for our midterm project by hooking up two potentiometers to control the upper and lower paddles.</p>
+
+### Interactive Pot Light Pong Arduino Code
+    const int leftPin = A0;
+    const int rightPin = A1;
+
+    void setup() {
+      Serial.begin(9600);
+    }
+
+    void loop() {
+      Serial.print(analogRead(leftPin));
+      Serial.print(",");
+      Serial.println(analogRead(rightPin));
+    }
+
+### Interactive Pot Light Pong Processing Code
+    import processing.serial.*;
+
+    //Initializes a game instance
+    Game game;
+
+    //imports and initializes a controller
+    import controlP5.*;
+    ControlP5 cp5;
+
+    //sets up the variable to be controlled by the controller (diameter of ball)
+    float d;
+
+    float leftPin = 0;
+    float rightPin = 0;
+
+    Serial myPort;
+
+    void setup() {
+      println(Serial.list());
+      println(Serial.list()[9]);
+    //  myPort = new Serial(this, Serial.list()[9], 9600);
+      myPort = new Serial(this, Serial.list()[4], 9600);
+      myPort.bufferUntil('\n');
+
+      size(800,800);
+      background(0);
+      smooth();
+      //creates a new controller
+      cp5 = new ControlP5(this);
+      cp5.addSlider("d")
+         .setPosition(10,30)
+         .setSize(200,20)
+         .setRange(0,100)
+         .setValue(20)
+         ;
+       //starts the game
+      game = new Game();
+      game.setUp();
+      game.begin();
+
+      //loads music file
+    //  minim = new Minim(this);
+    //  player = minim.loadFile("file.mp3", 2048);
+    //  player.play();
+    }
+
+    void draw() {
+      background(0);
+      game.play();
+    }
+
+    void keyPressed() {
+      //calls the split function on the ball when the spacebar is hit
+      if (key == ' ') {
+        int currentCount = game.balls.length;
+        for (int i = 0; i < currentCount; i++) {
+          game.balls[i].split();
+      }
+      }
+      //cause the paddles to move along the edge of screen when certain keys are presed
+      if (key == CODED) {
+        if ((keyCode == UP) && (game.paddles[2].pos.y - game.paddles[2].w/2) > 0) {
+          game.paddles[2].pos.y -= 25;
+        } else if ((keyCode == DOWN) && (game.paddles[2].pos.y + game.paddles[2].w/2) < height) {
+          game.paddles[2].pos.y += 25;
+        }
+      }
+      if ((key == 'q')&& (game.paddles[0].pos.y - game.paddles[0].w/2) > 0){
+        game.paddles[0].pos.y -= 25;
+      }
+      if ((key == 'a') && (game.paddles[0].pos.y + game.paddles[0].w/2) < height)
+       {
+        game.paddles[0].pos.y += 25;
+      }
+
+
+    //  if ((key == 'n') && (game.paddles[3].pos.x - game.paddles[3].w/2) > 0) {
+    //    game.paddles[3].pos.x -= 25;
+    //  }
+    //  if ((key == 'm')&& (game.paddles[3].pos.x + game.paddles[3].w/2) < width) {
+    //    game.paddles[3].pos.x += 25;
+    //  }
+    //  if ((key == 'c') && (game.paddles[1].pos.x - game.paddles[1].w/2) > 0) {
+    //    game.paddles[1].pos.x -= 25;
+    //  }
+    //  if ((key == 'v') && (game.paddles[1].pos.x + game.paddles[1].w/2) < width){
+    //    game.paddles[1].pos.x += 25;
+    //  }
+    }
+
+    void serialEvent(Serial myPort) {
+      String inString = myPort.readStringUntil('\n');
+
+      if (inString != null) {
+        inString = trim(inString);
+        float[] pins = float(split(inString, ","));
+        if (pins.length >= 2) {
+          game.paddles[1].pos.x = map(pins[0], 0, 1023, 0 + game.paddles[1].w/2, 800 - game.paddles[1].w/2);
+          game.paddles[3].pos.x = map(pins[1], 0, 1023, 0 + game.paddles[1].w/2, 800 - game.paddles[1].w/2);
+        }
+      }
+    }
+
+    //imports and initializes for the audio file
+    //import ddf.minim.*;
+    //AudioPlayer player;
+    //Minim minim;
+
+    //turns off the audio file
+    //void stop()
+    //{
+    //  player.close();
+    //  minim.stop();
+    //  super.stop();
+    //}
+
+Ball, Game, Paddle, Player Classes Left Unchanged aka Yay OOP!!!
