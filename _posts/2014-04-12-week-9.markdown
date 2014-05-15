@@ -131,4 +131,4 @@ The built-in Serial Monitor serves as a console that helps in developing and deb
 MOSFET extends the capabilities of Arduino by serving as an intermediary electronic switch conductor capable of driving bigger loads.
 Complex sensors produce information that need more than a digitalRead or analogRead and are thus pre-processed by small microcontrollers in the circuit.
 
-<iframe src="//player.vimeo.com/video/92609021" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/92609021">Sleepy Light Breathing</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<iframe src="//player.vimeo.com/video/92609021" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/92609021">Sleepy Light Breathing</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p> <p>Photoresistor controls the rate at which the light breathes.</p>

@@ -30,4 +30,4 @@ Igoe cautions "Don’t interpret your own work." He suggests that in making inte
 
 Igoe goes through a list of what he has observed as re-occuring themes in physical computing projects. Mix and match for inspiration.
 
-<iframe src="//player.vimeo.com/video/94075682" width="500" height="889" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/94075682">Interactive Pot Light Pong</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<iframe src="//player.vimeo.com/video/94075682" width="500" height="889" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/94075682">Interactive Pot Light Pong</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p> <p>Created physical interface for my 4-player light pong game I wrote with Leena for our midterm project by hooking up two potentiometers to control the upper and lower paddles.</p>

@@ -4,3 +4,5 @@ title:  "Week 14: Pokedex!"
 date:   2014-05-20 12:40:46
 categories:
 ---
+
+<iframe src="//player.vimeo.com/video/95399336" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/95399336">Pokedex In The Wild</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p> <p>The in-class demo with 10 pokemon of an interactive Pokedex that reports back the name of the Pokemon scanned on the Arduino-driven LCD screen. In more detail, the Processing sketch that runs on any device supporting Java monitors the device&#039;s camera, which is triggered by a scanning red laser and subsequently sends a HTTP Get request to a server running a basic Ruby On Rails webapp marking the device as flagged. Then, the Arduino sketch routinely pings the server to check for flagged devices and reports it on the attached LCD screen. The simple protocol used was a * to mark the beginning of a device&#039;s name and ^ to mark the end.</p>
