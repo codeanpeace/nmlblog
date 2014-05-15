@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "Week 13: Laser Eye"
+date:   2014-05-12 12:40:46
+categories:
+---
+
+<iframe src="//player.vimeo.com/video/95399335" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/95399335">Pokedex V2 LCD Display</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
