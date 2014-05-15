@@ -1,0 +1,33 @@
+---
+layout: post
+title:  "Week 11: Interactive Design: Bridging the Analogue and Digital Divide"
+date:   2014-04-28 12:40:46
+categories:
+---
+
+### [Making Interactive Art: Set the Stage, Then Shut Up and Listen](http://www.tigoe.net/blog/category/physicalcomputing/405/)
+Igoe cautions "Don’t interpret your own work." He suggests that in making interactive art, artists should metaphorically set the stage then step back, listen, and enjoy the show.
+
+### [Physical Computing’s Greatest Hits (and misses)](http://www.tigoe.net/blog/category/physicalcomputing/176/)
+1. Theremin-like instruments
+2. Gloves
+3. Floor Pads
+4. Video mirrors
+5. Mechanical pixels
+6. Scooby-Doo Paintings
+7. Body-as-cursor
+8. Hand-as-cursor
+9. Hand-as-cursor
+10. Tilty stands and tables
+11. Tilty Controllers
+12. Things You Yell At
+13. Meditation Helpers
+14. Fields of Grass
+15. Remote Hugs
+16. Dolls and Pets
+17. LED Fetishism
+18. Hybrids
+
+Igoe goes through a list of what he has observed as re-occuring themes in physical computing projects. Mix and match for inspiration.
+
+<iframe src="//player.vimeo.com/video/94075682" width="500" height="889" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/94075682">Interactive Pot Light Pong</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
