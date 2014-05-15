@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Week 10: Analogue"
+date:   2014-04-21 12:40:46
+categories:
+---
+
+### Analogue I/O
+Analogue out lets you control in a spectrum - think all the states/angles of a servo motor or potentiometer can turn versus the binary digital on/off of LEDs.
+
+<iframe src="//player.vimeo.com/video/92609020" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/92609020">RGB Pot Colors</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
