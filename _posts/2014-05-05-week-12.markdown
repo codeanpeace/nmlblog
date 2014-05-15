@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Week 12: Roaring Motors, High Current Loads"
+date:   2014-05-05 12:40:46
+categories:
+---
+
+### Transistors
+Transistors act as a middleman between microcontrollers like the Arduino and stuff that require higher current and voltage like motors.
+
+#### Connections:
+1. Base - microcontroller's output
+2. Collector - high-current load - power source
+3. Emitter - ground
+
+Also, make sure to add a diode in parallel with collector and emitter of transistor directed away from ground in order to protect the transistor from back voltage. Back voltage occurs when the motor shuts down, yet still spinning due to inertia, and when the motor is turned in the reverse direction. In short, transistors are like gatekeepers and bodyguards to the microcontroller that keep it from frying!
+
+<iframe src="//player.vimeo.com/video/95399337" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/95399337">Pokedex V1 Serial Monitor</a> from <a href="http://vimeo.com/user4315024">Harrison Tan</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
